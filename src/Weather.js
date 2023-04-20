@@ -48,6 +48,16 @@ export default function Weather() {
           </li>
         </ul>
       </span>
+      <span>
+        The project is{" "}
+        <a
+          href="https://github.com/mariakisel16/weather-react1"
+          target="_blank"
+        >
+          open-sourced
+        </a>
+        , and it was built by Maria Kisel
+      </span>
     </div>
   );
 }
