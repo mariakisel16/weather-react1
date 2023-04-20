@@ -1,5 +1,18 @@
 .App {
   text-align: center;
+  border: 1px solid #dadde1;
+  padding: 15px;
+  margin: 20px auto;
+  border-radius: 10px;
+  max-width: 600px;
+  background-color: rgb(192, 185, 185);
+  opacity: 0.8;
+}
+body {
+  font-family: arial, sans-serif;
+  background-image: url("https://www.surfertoday.com/images/stories/clouds.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .App-logo {
