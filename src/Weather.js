@@ -48,7 +48,7 @@ export default function Weather() {
               <li> Wind: {Math.round(weatherData.wind)}km/h</li>
             </ul>
           </div>
-          <div className="col-6">
+          <div className="col-6 align-items-center">
             <WeatherIcon code={weatherData.icon} />
           </div>
         </div>
