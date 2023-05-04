@@ -22,7 +22,7 @@ export default function Weather() {
       description: response.data.weather[0].main,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
-      icon: response.data.weather[0].main,
+      icon: response.data.weather[0].icon,
     });
   }
 
@@ -49,7 +49,7 @@ export default function Weather() {
             </ul>
           </div>
           <div className="col-6">
-            <WeatherIcon code={props.data.icon} />
+            <WeatherIcon code={weatherData.icon} />
           </div>
         </div>
       </span>
@@ -58,7 +58,7 @@ export default function Weather() {
         <a
           href="https://github.com/mariakisel16/weather-react1"
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
         >
           open-sourced
         </a>
