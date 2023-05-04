@@ -19,7 +19,7 @@ export default function Weather() {
   }
   function showWeather(response) {
     setWeatherData({
-      temperature: response.data.main.temp,
+      temperature: response.data.main.temperature,
       description: response.data.weather[0].main,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
