@@ -43,7 +43,9 @@ export default function Weather() {
         <div className="row">
           <div className="col-6">
             <ul>
-              <li> Temperature: {Math.round(weatherData.temperature)}°C </li>
+              <li>
+                <WeatherTemperature celsius={props.data.temperature} />
+              </li>
               <li> Description: {weatherData.description}</li>
               <li> Humidity: {weatherData.humidity}%</li>
               <li> Wind: {Math.round(weatherData.wind)}km/h</li>
