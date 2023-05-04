@@ -19,7 +19,7 @@ export default function Weather() {
   }
   function showWeather(response) {
     setWeatherData({
-      temperature: response.data.main.temperature,
+      temperature: response.data.main.temp,
       description: response.data.weather[0].main,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
@@ -44,7 +44,7 @@ export default function Weather() {
           <div className="col-6">
             <ul>
               <li>
-                <WeatherTemperature celsius={props.data.temperature} />
+                <WeatherTemperature celsius={weatherData.temperature} />
               </li>
               <li> Description: {weatherData.description}</li>
               <li> Humidity: {weatherData.humidity}%</li>
