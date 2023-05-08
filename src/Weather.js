@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import WeatherIcon from "./WeatherIcon";
 import WeatherTemperature from "./WeatherTemperature";
+import WeatherForecast from "./WeatherForecast";
 
 export default function Weather() {
   let [city, setCity] = useState(" ");
@@ -44,7 +45,7 @@ export default function Weather() {
           <div className="col-6">
             <ul>
               <li>
-                <WeatherTemperature celsius={weatherData.temperature} />
+                <WeatherTemperature celsius={weatherData.temperature || " "} />
               </li>
               <li> Description: {weatherData.description}</li>
               <li> Humidity: {weatherData.humidity}%</li>
@@ -55,8 +56,9 @@ export default function Weather() {
             </ul>
           </div>
           <div className="col-6 align-items-center">
-            <WeatherIcon code={weatherData.icon} />
+            <WeatherIcon code={weatherData.icon} size={80} />
           </div>
+          <WeatherForecast />
         </div>
       </span>
       <span>
