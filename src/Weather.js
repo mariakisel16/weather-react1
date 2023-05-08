@@ -48,7 +48,10 @@ export default function Weather() {
               </li>
               <li> Description: {weatherData.description}</li>
               <li> Humidity: {weatherData.humidity}%</li>
-              <li> Wind: {Math.round(weatherData.wind)}km/h</li>
+              <li>
+                {" "}
+                Wind: {weatherData.wind ? Math.round(weatherData.wind) : ""}km/h
+              </li>
             </ul>
           </div>
           <div className="col-6 align-items-center">

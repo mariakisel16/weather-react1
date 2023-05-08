@@ -10,7 +10,7 @@ export default function WeatherTemperature(props) {
     event.preventDefault();
     setUnit("celsius");
   }
-  if (unit === "celsius") {
+  if (props.unit === "celsius") {
     return (
       <div className="weatherTemperature">
         <span className="temperature">
