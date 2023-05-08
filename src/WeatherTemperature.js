@@ -25,7 +25,8 @@ export default function WeatherTemperature(props) {
       </div>
     );
   } else {
-    let fahrenheit = (props.celsius * 9) / 5 + 32;
+    let fahrenheit = props.celsius ? (props.celsius * 9) / 5 + 32 : 0;
+
     return (
       <div className="weatherTemperature">
         <span className="temperature">
