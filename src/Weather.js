@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import WeatherIcon from "./WeatherIcon";
 import WeatherTemperature from "./WeatherTemperature";
@@ -6,12 +6,13 @@ import WeatherForecast from "./WeatherForecast";
 
 export default function Weather() {
   let [city, setCity] = useState(" ");
-  const [weatherData, setWeatherData] = useState({});
+
+  let [weatherData, setWeatherData] = useState({});
 
   function handleSubmit(event) {
     event.preventDefault();
-
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9eca7aac0b071aa16e3cb063adba0785&units=metric`;
+    let apiKey = "9eca7aac0b071aa16e3cb063adba0785";
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(url).then(showWeather);
   }
 
@@ -20,6 +21,7 @@ export default function Weather() {
   }
   function showWeather(response) {
     setWeatherData({
+      coordinates: response.data.coord,
       temperature: response.data.main.temp,
       description: response.data.weather[0].main,
       humidity: response.data.main.humidity,
@@ -58,7 +60,9 @@ export default function Weather() {
           <div className="col-6 align-items-center">
             <WeatherIcon code={weatherData.icon} size={80} />
           </div>
-          <WeatherForecast />
+          <div>
+            <WeatherForecast coordinates={weatherData.coordinates} />{" "}
+          </div>
         </div>
       </span>
       <span>
