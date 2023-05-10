@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import WeatherIcon from "./WeatherIcon";
 import WeatherTemperature from "./WeatherTemperature";
@@ -17,7 +17,7 @@ export default function Weather() {
   }
 
   function updateCity(event) {
-    setCity(event.target.value);
+    setCity(event.currentTarget.value);
   }
   function showWeather(response) {
     setWeatherData({
@@ -65,6 +65,7 @@ export default function Weather() {
           </div>
         </div>
       </span>
+
       <span>
         The project is{" "}
         <a

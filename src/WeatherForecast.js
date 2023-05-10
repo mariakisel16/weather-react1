@@ -5,49 +5,53 @@ import "./WeatherForecast.css";
 import axios from "axios";
 
 export default function WeatherForecast(props) {
-  let [loaded, setLoaded] = useState(false);
-  let [forecast, setForecast] = useState([]);
+  const { longitude, latitude } = props;
+  const [loaded, setLoaded] = useState(false);
+  const [forecast, setForecast] = useState([]);
 
   useEffect(() => {
-    setLoaded(false);
-  }, [props.coordinates]);
+    setLoaded(false); // Reset flag when props change
+  }, [longitude, latitude]);
 
-  function handleForecast(response) {
-    setForecast(response.data.daily);
-    setLoaded(true);
-  }
-
-  if (loaded) {
-    return (
-      <div className="weatherForecast">
-        <div className="row">
-          {forecast.slice(0, 5).map((dailyForecast, index) => (
-            <div className="col" key={index}>
-              <div className="weekDay">
-                <WeatherDay data={dailyForecast} />
+  useEffect(() => {
+    if (loaded) {
+      return (
+        <div className="weatherForecast">
+          <div className="row">
+            {forecast.slice(0, 5).map((dailyForecast, index) => (
+              <div className="col" key={index}>
+                <div className="weekDay">
+                  <WeatherDay data={dailyForecast} />
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="row align-items-center">
+            <div className="col">
+              <div className="forecastIcon">
+                <WeatherIcon code={forecast[0].weather[0].icon} size={50} />
               </div>
             </div>
-          ))}
-
-          <div className="forecastIcon">
-            <WeatherIcon code={forecast[0].weather[0].icon} size={50} />
+            <div className="col">
+              <span className="forecastTemperature-max">
+                {Math.round(forecast[0].temp.max)}°
+              </span>
+              <span className="forecastTemperature-min">
+                {Math.round(forecast[0].temp.min)}°
+              </span>
+            </div>
           </div>
-          <span className="forecastTemperature-max">
-            {Math.round(forecast[0].temp.max)}°
-          </span>
-          <span className="forecastTemperature-min">
-            {Math.round(forecast[0].temp.min)}°
-          </span>
         </div>
-      </div>
-    );
-  } else {
-    let longitude = props.coordinates.lon;
-    let latitude = props.coordinates.lat;
-    let apiKey = `9eca7aac0b071aa16e3cb063adba0785`;
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleForecast);
+      );
+    } else {
+      let apiKey = "9eca7aac0b071aa16e3cb063adba0785";
+      let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+      axios.get(apiUrl).then((response) => {
+        setForecast(response.data.daily);
+        setLoaded(true);
+      });
+    }
+  }, [loaded, latitude, longitude]);
 
-    return null;
-  }
+  return null;
 }
