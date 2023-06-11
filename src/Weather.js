@@ -3,6 +3,7 @@ import axios from "axios";
 import WeatherIcon from "./WeatherIcon";
 import WeatherTemperature from "./WeatherTemperature";
 import WeatherForecast from "./WeatherForecast";
+import "./WeatherForecast.css";
 
 export default function Weather() {
   let [city, setCity] = useState(" ");
@@ -44,7 +45,7 @@ export default function Weather() {
       </form>
       <span className="weather-info">
         <div className="row">
-          <div className="col-6">
+          <div className="col-6 weather-data">
             <ul>
               <li>
                 <WeatherTemperature celsius={weatherData.temperature || " "} />
@@ -57,7 +58,7 @@ export default function Weather() {
               </li>
             </ul>
           </div>
-          <div className="col-6 align-items-center">
+          <div className="col-6 align-items-left img-icon">
             <WeatherIcon code={weatherData.icon} size={80} />
           </div>
           <div>

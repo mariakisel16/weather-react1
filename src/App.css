@@ -29,7 +29,11 @@ body {
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+@media (max-width: 900px) {
+  body {
+    height: auto;
+  }
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -68,4 +72,7 @@ ul {
     max-width: 350px;
     display: block;
   }
+}
+.weather-data {
+  margin-left: 0;
 }
